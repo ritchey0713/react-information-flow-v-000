@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { getReducedColor } from './randomColorGenerator.js'
+import { getReducedColor, getRandomColor } from './randomColorGenerator.js'
 import Tier3 from './Tier3'
 
 
@@ -11,6 +11,28 @@ export default class Tier2 extends Component {
       childColor: getReducedColor(this.props.color),
     }
   }
+  componentWillRecieveProps(nextProps) {
+    this.setState({
+      ...this.state,
+      color: nextProps.color,
+      childColor: getReducedColor(nextProps.color)
+    })
+  }
+   handleClick = (e) => {
+    let newColor = getRandomColor()
+    this.setState({
+      ...this.state,
+      color: newColor,
+      childColor: getReducedColor(newColor)
+    })
+  }
+   handleChildClick = (e) => {
+    this.setState({
+      ...this.state,
+      childColor: getRandomColor()
+    })
+  }
+
 
   render() {
     // hard coded color values have been added below, though they won't be
